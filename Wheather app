@@ -1,0 +1,16 @@
+import requests
+import json
+import pyttsx3
+
+
+
+city=input("enter city:\n")
+url=f"http://api.weatherapi.com/v1/current.json?key=233489709a444120ad4130142240207&q={city}&aqi=no"
+r=requests.get(url)
+# print(r.text)
+wdic=json.loads(r.text)
+w=wdic["current"]["temp_c"]
+
+engine = pyttsx3.init()
+engine.say(f"the current whether in {city} is {w}")
+engine.runAndWait()
